@@ -1,0 +1,12 @@
+{
+  "name": "starter-files",
+  "version": "1.0.0",
+  "description": "community project",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "jeffrey",
+  "license": "ISC"
+}
