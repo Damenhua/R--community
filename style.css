@@ -10,6 +10,14 @@ body {
   padding: 40px 64px;
 }
 
+.hidden {
+  display: none !important;
+  /* visibility: hidden;
+  opacity: 0;
+  height: 0;
+  overflow: hidden; */
+}
+
 /* MAIN LAYOUT */
 .container {
   max-width: 1500px;
