@@ -49,13 +49,22 @@ const initialFacts = [
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [facts, setFacts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(function () {
     async function getFacts() {
-      const { data: factContents, error } = await supabase
-        .from("fact-contents")
-        .select("*");
-      setFacts(factContents);
+      try {
+        setIsLoading(true);
+        const { data: factContents, error } = await supabase
+          .from("fact-contents")
+          .select("*")
+          .order("votesInteresting", { ascending: false });
+        setFacts(factContents);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
     }
     getFacts();
   }, []);
@@ -69,10 +78,14 @@ function App() {
 
       <main className="main">
         <CategoryFilter />
-        <FactsList facts={facts} />
+        {isLoading ? <Load /> : <FactsList facts={facts} />}
       </main>
     </>
   );
+}
+
+function Load() {
+  return <p className="loading">Loading...</p>;
 }
 
 function Header({ showForm, setShowForm }) {
