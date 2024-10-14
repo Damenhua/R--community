@@ -8,6 +8,7 @@ factsList.innerHTML = "";
 
 // Load data from Supabase
 loadFacts();
+
 async function loadFacts() {
   try {
     const res = await fetch(
