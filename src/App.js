@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./style.css";
-
+import supabase from "./supabase";
 const CATEGORIES = [
   { name: "technology", color: "#ca8a04" },
   { name: "science", color: "#ca8a04" },
@@ -48,7 +48,17 @@ const initialFacts = [
 
 function App() {
   const [showForm, setShowForm] = useState(false);
-  const [facts, setFacts] = useState(initialFacts);
+  const [facts, setFacts] = useState([]);
+
+  useEffect(function () {
+    async function getFacts() {
+      const { data: factContents, error } = await supabase
+        .from("fact-contents")
+        .select("*");
+      setFacts(factContents);
+    }
+    getFacts();
+  }, []);
 
   return (
     <>
@@ -182,6 +192,9 @@ function CategoryFilter() {
 }
 
 function FactsList({ facts }) {
+  if (facts.length === 0) {
+    return <p className="no-facts">No facts for this category yet!</p>;
+  }
   return (
     <section>
       <ul className="facts-list">
