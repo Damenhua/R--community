@@ -26,6 +26,12 @@ body {
   margin-top: 24px;
 }
 
+.disputed {
+  color: #9f1239;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
 /* MAIN LAYOUT */
 #root {
   max-width: 1500px;
@@ -38,6 +44,34 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 48px;
+  height: calc(100vh - 40px - 68px);
+}
+
+section {
+  overflow: auto;
+  padding-bottom: 40px;
+}
+
+/* 滾動條整體樣式 */
+::-webkit-scrollbar {
+  width: 4px; /* 滾動條寬度 */
+}
+
+/* 滾動條滑塊 */
+::-webkit-scrollbar-thumb {
+  background-color: #fed7aa; /* 滑塊顏色 */
+  border-radius: 5px; /* 滑塊圓角 */
+}
+
+/* 滾動條軌道 */
+::-webkit-scrollbar-track {
+  background-color: #082f49; /* 軌道顏色 */
 }
 
 .fact-form {
@@ -77,9 +111,9 @@ body {
 }
 
 @media (max-width: 1100px) {
-  body {
-    padding: 32px 48px;
-  }
+  /* body {
+    /* padding: 32px 48px; 
+  } */
 
   .fact-form {
     flex-direction: column;
@@ -90,12 +124,6 @@ body {
   .fact-form select {
     width: auto;
   }
-}
-
-.main {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 48px;
 }
 
 @media (max-width: 1000px) {
