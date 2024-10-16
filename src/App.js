@@ -98,7 +98,7 @@ function Load() {
 }
 
 function Header({ showForm, setShowForm }) {
-  const appTitle = "Learned";
+  const appTitle = "MindShare";
 
   return (
     <header className="header">
